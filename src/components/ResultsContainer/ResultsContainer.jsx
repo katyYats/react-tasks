@@ -7,14 +7,14 @@ import MoviesList from '../MoviesList';
 
 import './ResultsContainer.scss';
 
-const ResultsContainer = () => (
+const ResultsContainer = ({ movies }) => (
   <div className='results-container'>
     <div className='results-actions'>
       <ResultsFilter />
       <ResultsSort />
     </div>
     <ResultsCount />
-    <MoviesList />
+    <MoviesList movies={movies}/>
   </div>
 );
 

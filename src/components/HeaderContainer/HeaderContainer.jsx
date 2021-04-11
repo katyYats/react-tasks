@@ -6,11 +6,11 @@ import Search from '../Search';
 
 import './HeaderContainer.scss';
 
-const HeaderContainer = () => (
+const HeaderContainer = ({ setActiveModal }) => (
   <div className='header-container'>
     <div className='header'>
       <Logo />
-      <AddMovie />
+      <AddMovie setActiveModal={setActiveModal}/>
     </div>
     <Search />
   </div>);
