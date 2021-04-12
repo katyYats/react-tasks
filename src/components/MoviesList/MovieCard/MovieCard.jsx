@@ -9,15 +9,18 @@ import DeleteModal from '../../Modals/DeleteModal';
 
 import './MovieCard.scss';
 
-const MovieCard = ({ movie }) => {
-  const { name, year, genre, img } = movie;
+const MovieCard = ({ movie, handleMovieDescription }) => {
+  const { id, name, year, genre, img } = movie;
   const [showMovieActions, setShowMovieActions] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
 
   const resetActiveModal = () => setActiveModal(null);
 
   return (
-  <li className='movie-card'>
+  <li
+    className='movie-card'
+    id={id}
+    onClick={(e) => handleMovieDescription(e.currentTarget.id)}>
     <button
       className='movie-actions'
       onClick={() => setShowMovieActions(true)}>

@@ -40,11 +40,13 @@ class App extends React.Component {
     super(props);
     this.state = { 
       movieList: movies,
-      activeModal: null
+      activeModal: null,
+      movieDescriptionId: null
     };
 
     this.setActiveModal = this.setActiveModal.bind(this);
     this.resetActiveModal = this.resetActiveModal.bind(this);
+    this.handleMovieDescription = this.handleMovieDescription.bind(this);
   }
 
   setActiveModal(type) {
@@ -67,14 +69,21 @@ class App extends React.Component {
     });
   }
 
+  handleMovieDescription(id) {
+    this.setState({movieDescriptionId: id});
+  }
+
   render() {
-    const { activeModal } = this.state;
+    const { activeModal, movieDescriptionId } = this.state;
 
     return (
       <ErrorBoundary
         renderErrorCard={(error) => <ErrorCard error={error} />}>
-        <HeaderContainer setActiveModal={this.setActiveModal}/>
-        <ResultsContainer movies={this.state.movieList}/>
+        <HeaderContainer
+          movieDetails={this.state.movieList.find(({ id }) => id === movieDescriptionId)}
+          setActiveModal={this.setActiveModal}
+          handleMovieDescription={this.handleMovieDescription}/>
+        <ResultsContainer movies={this.state.movieList} handleMovieDescription={this.handleMovieDescription}/>
         {
           activeModal === 'add' &&
           <Modal
@@ -83,22 +92,6 @@ class App extends React.Component {
             <MovieModal
               {...initialMovieState}
               onSave={(movie) => handleAddMovieModal(movie)}/>
-          </Modal>
-        }
-        {
-          activeModal === 'edit' &&
-          <Modal
-            title='Edit movie'
-            onClose={this.resetActiveModal}>
-            <MovieModal {...initialMovieState} onSave={(id) => handleDeleteMovie(id)}/>
-          </Modal>
-        }
-        {
-          activeModal === 'delete' &&
-          <Modal
-            title='Delete movie'
-            onClose={this.resetActiveModal}>
-            <MovieModal {...initialMovieState} onDelete={(movie) => handleAddMovieModal(movie)}/>
           </Modal>
         }
         <Footer />

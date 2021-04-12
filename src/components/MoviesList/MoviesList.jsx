@@ -4,10 +4,10 @@ import MovieCard from './MovieCard';
 
 import './MoviesList.scss';
 
-const MoviesList = ({ movies }) => {
+const MoviesList = ({ movies, handleMovieDescription }) => {
   return (
     <ul className='movieList'>
-      {movies.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+      {movies.map(movie => <MovieCard key={movie.id} movie={movie} handleMovieDescription={handleMovieDescription} />)}
     </ul>
   );
 };
