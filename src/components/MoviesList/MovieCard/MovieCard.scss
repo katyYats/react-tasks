@@ -1,6 +1,49 @@
 .movie-card {
   list-style-type: none;
   margin: 20px;
+  position: relative;
+}
+
+.movie-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.actions-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #232323;
+  padding: 5px 0;
+  width: 120px;
+}
+
+.action-item {
+  padding: 10px 20px;
+}
+
+.action-item:hover {
+  background-color: #F65261;
+  cursor: pointer;
+}
+
+.close-button {
+  width: 100%;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .movie-img {
@@ -23,7 +66,7 @@
 
 .movie-year {
   border: 1px solid #555;
-  border-radius: 10%;
+  border-radius: 5px;
   padding: 5px 10px;
 }
 

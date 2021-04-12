@@ -1,0 +1,61 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(15, 15, 15, 0.75);
+}
+
+.madal-container {
+  width: 35%;
+  padding: 20px 40px;
+  background-color: #232323;
+  position: relative;
+}
+
+.modal-header {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.movie-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+
+  input,
+  select {
+    padding: 15px;
+    margin: 10px 0 20px 0;
+    background-color: #424242;
+    border-radius: 5px;
+    width: 100%;
+    color: #fff;
+    box-sizing: border-box;
+  }
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  color: #F65261;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,19 @@
+.button {
+  width: 120px;
+  height: 40px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 5px;
+  text-transform: uppercase;
+  margin-left: 20px;
+
+  &.reset {
+    border: 1px solid #F65261;
+    color: #F65261;
+  }
+
+  &.save {
+    background-color: #F65261;
+    color: #FFF;
+  }
+}
