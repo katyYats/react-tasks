@@ -9,7 +9,6 @@ import './HeaderContainer.scss';
 
 const HeaderContainer = ({
   movieDetails,
-  setActiveModal,
   handleMovieDescription
 }) => (
   <div className='header-container'>
@@ -17,7 +16,7 @@ const HeaderContainer = ({
       <Logo />
       {
         !movieDetails
-          ? <AddMovie setActiveModal={setActiveModal} />
+          ? <AddMovie />
           : <button
               className='search-button'
               onClick={() => handleMovieDescription(null)}>

@@ -1,20 +1,35 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import closeBtn from '../../../assets/close.png';
 import Modal from '../../Modals/Modal';
 import MovieModal from '../../Modals/MovieModal';
 import DeleteModal from '../../Modals/DeleteModal';
-
+import { changeMovie, removeMovie } from '../../../actions/movieActions';
 
 import './MovieCard.scss';
 
+const mockedChangedMovie = (movie) => ({ ...movie, title: 'LALALA'});
+
 const MovieCard = ({ movie, handleMovieDescription }) => {
-  const { id, name, year, genre, img } = movie;
+  const dispatch = useDispatch();
+
+  const { id, title, release_date, genres, poster_path } = movie;
   const [showMovieActions, setShowMovieActions] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
 
   const resetActiveModal = () => setActiveModal(null);
+
+  const handleEditMovie = (movie) => {
+    dispatch(changeMovie(movie));
+    resetActiveModal();
+  };
+
+  const handleDeleteMovie = (id) => {
+    dispatch(removeMovie(id));
+    resetActiveModal();
+  };
 
   return (
   <li
@@ -43,18 +58,18 @@ const MovieCard = ({ movie, handleMovieDescription }) => {
           onClick={() => setActiveModal('delete')}>Delete</p>
       </div>
     }
-    <img className='movie-img' src={img}></img>
+    <img className='movie-img' src={poster_path}></img>
     <p className='movie-info'>
-      <span className='movie-name'>{name}</span>
-      <span className='movie-year'>{year}</span>
+      <span className='movie-name'>{title}</span>
+      <span className='movie-year'>{release_date}</span>
     </p>
-    <p className='movie-genre'>{genre}</p>
+    <p className='movie-genre'>{genres.join(', ')}</p>
     {
       activeModal === 'edit' && 
       <Modal
         header='Edit movie'
         onClose={resetActiveModal}>
-        <MovieModal {...movie} onSave={(id) => handleDeleteMovie(id)}/>
+        <MovieModal {...movie} onSave={() => handleEditMovie(mockedChangedMovie(movie))}/>
       </Modal>
     }
     {
@@ -62,18 +77,9 @@ const MovieCard = ({ movie, handleMovieDescription }) => {
       <Modal
         header='Delete movie'
         onClose={resetActiveModal}>
-        <DeleteModal />
+        <DeleteModal onConfirm={() => handleDeleteMovie(id)} />
       </Modal>
     }
   </li>)};
-
-MovieCard.propTypes = {
-  movie: {
-    name: PropTypes.string,
-    year: PropTypes.string,
-    genre: PropTypes.string,
-    img: PropTypes.string,
-  }
-};
 
 export default MovieCard;
